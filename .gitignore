@@ -1,0 +1,21 @@
+# --- Frontend & Environment ---
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# --- Python & Backend ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# --- Application Specific (main.py) ---
+newsroom.db
+*.error

@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F8F7F4;
+  --ink: #1B1B19;
+  --accent: #E15D44;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+header.v1-header {
+  border-bottom: 2px solid var(--ink);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 1rem 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: calc(100vh - 90px);
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+aside.v1-aside {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+aside.v1-aside::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+main.v1-main {
+  padding: 2rem 4rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+main.v1-main::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 768px) {
+  main.v1-main {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid var(--ink);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.btn {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-drawer-slide {
+  animation: drawerSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-backdrop-fade {
+  animation: backdropFadeIn 0.2s ease-out forwards;
+}
+
+@keyframes drawerSlideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes backdropFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-drawer-slide-out {
+  animation: drawerSlideOut 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.animate-backdrop-fade-out {
+  animation: backdropFadeOut 0.22s ease-in forwards;
+}
