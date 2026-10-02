@@ -40,9 +40,17 @@ export const Header: React.FC<HeaderProps> = ({
           <SlidersHorizontal className="w-4 h-4" />
         </button>
 
-        <div>
-          <div className="label" style={{ textTransform: 'none' }}>[00] AIIO_Use</div>
-          <div style={{ fontWeight: 600, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>
+        <div className="flex flex-col items-start">
+          <div 
+            className="text-white font-mono text-[0.68rem] tracking-wider px-1.5 py-0.5 leading-tight"
+            style={{ backgroundColor: '#DE7158', textTransform: 'none' }}
+          >
+            [00] AIIO_Use
+          </div>
+          <div 
+            className="text-white font-medium text-[1.1rem] tracking-[-0.02em] px-1.5 py-0.5 leading-tight"
+            style={{ backgroundColor: '#E15D44' }}
+          >
             Automated AI Newsfeed
           </div>
         </div>
