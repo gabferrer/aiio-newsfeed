@@ -51,5 +51,4 @@ The frontend provides the visual interface and handles data filtering.
 * `/frontend`
   * `src/App.tsx` - Main React application, state management, and polling logic.
   * `src/types.ts` - TypeScript interfaces for the Article data model.
-  * `src/components/ArticleDrawer.tsx` - Slide-out UI for deep-dive analysis.
 
