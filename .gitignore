@@ -19,3 +19,4 @@ env/
 # --- Application Specific (main.py) ---
 newsroom.db
 *.error
+requirements.txt
