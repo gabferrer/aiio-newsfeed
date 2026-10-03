@@ -15,7 +15,8 @@ SYNC_FOLDER = r"E:\Gabriel\Users\Desktop\NewsroomTest"
 Path(SYNC_FOLDER).mkdir(parents=True, exist_ok=True) 
 
 # --- Database Setup ---
-DATABASE_URL = "sqlite:///./newsroom.db"
+BASE_DIR = Path(__file__).resolve().parent
+DATABASE_URL = f"sqlite:///{BASE_DIR / 'newsroom.db'}"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -92,9 +93,9 @@ def get_articles_and_ingest(
     current_time = time.time()
     
     for filepath in glob.glob(search_pattern):
-        # 120-Second File Age Buffer to prevent race conditions with ChatGPT
+        # 90-Second File Age Buffer to prevent race conditions with ChatGPT
         file_age = current_time - os.path.getmtime(filepath)
-        if file_age < 120:
+        if file_age < 90:
             continue
             
         try:
