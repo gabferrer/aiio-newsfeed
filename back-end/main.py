@@ -1,5 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from sqlalchemy import create_engine, Column, Integer, String, Text, JSON
 from sqlalchemy.orm import sessionmaker, Session, declarative_base
 from pydantic import BaseModel
@@ -140,6 +142,22 @@ def get_articles_and_ingest(
         query = query.filter(ArticleModel.news_type == news_type)
         
     return query.order_by(ArticleModel.id.desc()).limit(100).all()
+
+# --- Static File Serving (React Frontend) ---
+# Create absolute paths based on where main.py is located
+DIST_DIR = BASE_DIR / "dist"
+ASSETS_DIR = DIST_DIR / "assets"
+
+# Only mount if the directory actually exists to prevent runtime crashes
+if ASSETS_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=str(ASSETS_DIR)), name="assets")
+
+@app.get("/")
+def serve_frontend():
+    index_file = DIST_DIR / "index.html"
+    if not index_file.exists():
+        return {"error": "Frontend build not found. Did you copy the dist folder?"}
+    return FileResponse(str(index_file))
 
 if __name__ == "__main__":
     import uvicorn
